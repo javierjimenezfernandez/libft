@@ -6,7 +6,7 @@
 #    By: javjimen <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 12:30:20 by javjimen          #+#    #+#              #
-#    Updated: 2023/09/22 16:06:45 by javjimen         ###   ########.fr        #
+#    Updated: 2023/09/28 15:46:25 by javjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME 		= libft.a
 
 # List of source files
-SRCS 		= ft_isalpha.c \
+PART_1		= ft_isalpha.c \
 			  ft_isdigit.c \
 			  ft_isalnum.c \
 			  ft_isascii.c \
@@ -28,7 +28,19 @@ SRCS 		= ft_isalpha.c \
 			  ft_strlcat.c \
 			  ft_toupper.c \
 			  ft_tolower.c \
-			  ft_strchr.c
+			  ft_strchr.c \
+			  ft_strrchr.c \
+			  ft_strncmp.c \
+			  ft_memchr.c \
+			  ft_memcmp.c \
+			  ft_strnstr.c \
+			  ft_atoi.c \
+			  ft_calloc.c \
+			  ft_strdup.c
+
+PART_2		= 
+
+SRCS 		= $(PART_1) $(PART_2)
 
 # Building directory
 BUILD_DIR	= build
