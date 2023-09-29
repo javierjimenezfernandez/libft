@@ -6,7 +6,7 @@
 #    By: javjimen <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 12:30:20 by javjimen          #+#    #+#              #
-#    Updated: 2023/09/28 15:46:25 by javjimen         ###   ########.fr        #
+#    Updated: 2023/09/29 16:26:35 by javjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,9 @@ PART_1		= ft_isalpha.c \
 			  ft_calloc.c \
 			  ft_strdup.c
 
-PART_2		= 
+PART_2		= ft_substr.c \
+			  ft_strjoin.c \
+			  ft_strtrim.c
 
 SRCS 		= $(PART_1) $(PART_2)
 
