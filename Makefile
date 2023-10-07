@@ -6,7 +6,7 @@
 #    By: javjimen <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 12:30:20 by javjimen          #+#    #+#              #
-#    Updated: 2023/10/06 17:58:21 by javjimen         ###   ########.fr        #
+#    Updated: 2023/10/07 16:06:10 by javjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,6 +76,8 @@ ARFLAGS		= -r -c -s
 
 SANITIZE	= -fsanitize=address
 
+# Rule name protection
+.PHONY:		 all clean fclean re
 
 # Make rules
 all: 		$(NAME)
@@ -98,9 +100,7 @@ clean:
 fclean: 	clean
 			$(RM) $(NAME)
 
-re:			 fclean all
-
-.PHONY:		 all clean fclean re
+re:			fclean all
 
 #.SILENT:
 
