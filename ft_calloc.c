@@ -6,11 +6,10 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:09:24 by javjimen          #+#    #+#             */
-/*   Updated: 2023/09/29 18:39:14 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/10/05 13:06:24 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 void	*ft_calloc(size_t count, size_t size)
