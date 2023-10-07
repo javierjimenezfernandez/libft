@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/29 16:15:31 by javjimen          #+#    #+#             */
-/*   Updated: 2023/10/06 13:20:17 by javjimen         ###   ########.fr       */
+/*   Created: 2023/10/06 17:57:54 by javjimen          #+#    #+#             */
+/*   Updated: 2023/10/06 18:08:04 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	*strjoin;
-	size_t	size;
-	size_t	i;
-	size_t	j;
+	char	*base;
+	int		base_len;
+	int		q;
+	int		m;
 
-	i = 0;
-	j = 0;
-	size = ft_strlen(s1) + ft_strlen(s2) + 1;
-	strjoin = (char *)malloc(size * sizeof(char));
-	if (!strjoin)
-		return (NULL);
-	while (s1[i] != '\0')
-	{
-		strjoin[i] = s1[i];
-		i++;
-	}
-	while (s2[j] != '\0')
-	{
-		strjoin[i] = s2[j];
-		i++;
-		j++;
-	}
-	strjoin[i] = '\0';
-	return (strjoin);
+	if (fd < 0)
+		return ;
+	base = "0123456789";
+	base_len = 10;
+	q = n / base_len;
+	m = n % base_len;
+	if (q != 0)
+		ft_putnbr_fd(q, fd);
+	else if (m < 0)
+		ft_putchar_fd('-', fd);
+	if (m < 0)
+		ft_putchar_fd(base[-m], fd);
+	else
+		ft_putchar_fd(base[m], fd);
 }

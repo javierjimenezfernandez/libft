@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/29 16:15:31 by javjimen          #+#    #+#             */
-/*   Updated: 2023/10/06 13:20:17 by javjimen         ###   ########.fr       */
+/*   Created: 2023/10/06 17:49:08 by javjimen          #+#    #+#             */
+/*   Updated: 2023/10/06 17:51:53 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <unistd.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_putstr_fd(char *s, int fd)
 {
-	char	*strjoin;
-	size_t	size;
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	size = ft_strlen(s1) + ft_strlen(s2) + 1;
-	strjoin = (char *)malloc(size * sizeof(char));
-	if (!strjoin)
-		return (NULL);
-	while (s1[i] != '\0')
+	if (fd < 0)
+		return ;
+	while (*s)
 	{
-		strjoin[i] = s1[i];
-		i++;
+		write(fd, s, 1);
+		s++;
 	}
-	while (s2[j] != '\0')
-	{
-		strjoin[i] = s2[j];
-		i++;
-		j++;
-	}
-	strjoin[i] = '\0';
-	return (strjoin);
 }

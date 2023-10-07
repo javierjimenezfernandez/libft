@@ -6,14 +6,11 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:26:22 by javjimen          #+#    #+#             */
-/*   Updated: 2023/09/29 20:29:45 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/10/06 13:19:15 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
-
-#include <stdio.h>
 
 static size_t	ft_compute_trimmed_size(char const *s1, char const *set)
 {
@@ -51,22 +48,21 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	size = ft_compute_trimmed_size(s1, set);
 	strtrim = (char *)malloc(size * sizeof(char));
-	if (strtrim)
+	if (!strtrim)
+		return (NULL);
+	i = 0;
+	while (s1[i] != '\0')
 	{
-		i = 0;
-		while (s1[i] != '\0')
-		{
-			if (!ft_strchr(set, s1[i]))
-				break ;
-			i++;
-		}
-		j = 0;
-		while (s1[i] != '\0' && --size)
-		{
-			strtrim[j] = s1[i + j];
-			j++;
-		}
-		strtrim[j] = '\0';
+		if (!ft_strchr(set, s1[i]))
+			break ;
+		i++;
 	}
+	j = 0;
+	while (s1[i] != '\0' && --size)
+	{
+		strtrim[j] = s1[i + j];
+		j++;
+	}
+	strtrim[j] = '\0';
 	return (strtrim);
 }
