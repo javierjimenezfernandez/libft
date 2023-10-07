@@ -6,7 +6,7 @@
 #    By: javjimen <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 12:30:20 by javjimen          #+#    #+#              #
-#    Updated: 2023/10/07 16:06:10 by javjimen         ###   ########.fr        #
+#    Updated: 2023/10/07 18:59:00 by javjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,14 +52,26 @@ PART_2		= ft_substr.c \
 
 SRCS 		= $(PART_1) $(PART_2)
 
+BONUS_SRCS	= ft_lstnew_bonus.c \
+			  ft_lstadd_front_bonus.c \
+			  ft_lstsize_bonus.c \
+			  ft_lstlast_bonus.c \
+			  ft_lstadd_back_bonus.c \
+			  ft_lstdelone_bonus.c \
+			  ft_lstclear_bonus.c \
+			  ft_lstiter_bonus.c \
+			  ft_lstmap_bonus.c
+
 # Building directory
 BUILD_DIR	= build
 
 # List of object files
 OBJS 		= $(SRCS:%.c=$(BUILD_DIR)/%.o)
+BONUS_OBJS	= $(BONUS_SRCS:%.c=$(BUILD_DIR)/%.o)
 
-# LList of dependent files
+# List of dependent files
 DEPS 		= $(OBJS:.o=.d)
+BONUS_DEPS	= $(BONUS_OBJS:.o=.d)
 
 # List of header files
 INCLUDE 	= libft.h
@@ -77,7 +89,7 @@ ARFLAGS		= -r -c -s
 SANITIZE	= -fsanitize=address
 
 # Rule name protection
-.PHONY:		 all clean fclean re
+.PHONY:		 all clean fclean re bonus
 
 # Make rules
 all: 		$(NAME)
@@ -101,6 +113,9 @@ fclean: 	clean
 			$(RM) $(NAME)
 
 re:			fclean all
+
+bonus:		$(NAME) $(BONUS_OBJS)
+			$(AR) $(ARFLAGS) $(NAME) $(BONUS_OBJS)
 
 #.SILENT:
 
