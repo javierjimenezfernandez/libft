@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 13:13:53 by javjimen          #+#    #+#             */
-/*   Updated: 2023/10/07 18:59:34 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/10/18 00:21:48 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
 
 /* PART_1 */
 int		ft_isalpha(int c);

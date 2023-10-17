@@ -6,7 +6,7 @@
 #    By: javjimen <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 12:30:20 by javjimen          #+#    #+#              #
-#    Updated: 2023/10/07 18:59:00 by javjimen         ###   ########.fr        #
+#    Updated: 2023/10/18 00:43:14 by javjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ DEPS 		= $(OBJS:.o=.d)
 BONUS_DEPS	= $(BONUS_OBJS:.o=.d)
 
 # List of header files
-INCLUDE 	= libft.h
+#INCLUDE 	= libft.h
 
 # Compilation flags
 CC			= cc
@@ -83,13 +83,13 @@ AR			= ar
 DIR_DUP		= mkdir -p $(@D)
 
 CFLAGS 		+= -Wall -Wextra -Werror
-CPPFLAGS	+= -MMD -MP -I
+CPPFLAGS	+= -MMD -MP -I.
 ARFLAGS		= -r -c -s
 
 SANITIZE	= -fsanitize=address
 
 # Rule name protection
-.PHONY:		 all clean fclean re bonus
+.PHONY:		all clean fclean re bonus
 
 # Make rules
 all: 		$(NAME)
@@ -99,15 +99,15 @@ $(NAME): 	$(OBJS)
 
 $(BUILD_DIR)/%.o: %.c
 			$(DIR_DUP)
-			$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDE) -c -o $@ $<
+			$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
--include $(DEPS)
+-include $(DEPS) $(BONUS_DEPS)
 
 sanitize:	$(OBJS)
-			$(CC) $(OBJS) $(SANITIZE) -o $(NAME) 
+			$(CC) $(OBJS) $(SANITIZE) -o $(NAME)
 
 clean:
-			$(RM) $(OBJS) $(DEPS)
+			$(RM) $(OBJS) $(BONUS_OBJS) $(DEPS) $(BONUS_DEPS)
 
 fclean: 	clean
 			$(RM) $(NAME)
@@ -116,6 +116,10 @@ re:			fclean all
 
 bonus:		$(NAME) $(BONUS_OBJS)
 			$(AR) $(ARFLAGS) $(NAME) $(BONUS_OBJS)
+
+so:
+			$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRCS) $(BONUS_SRCS)
+			gcc -nostartfiles -shared -o libft.so $(OBJS) $(BONUS_OBJS)
 
 #.SILENT:
 

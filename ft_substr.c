@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 19:29:44 by javjimen          #+#    #+#             */
-/*   Updated: 2023/10/06 13:18:24 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/10/18 00:21:33 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
-	size_t	i;
 	size_t	size;
 	size_t	s_len;
 
-	i = 0;
 	s_len = ft_strlen(s);
 	if (start > s_len)
 		size = 1;
