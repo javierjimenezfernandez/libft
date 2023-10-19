@@ -46,17 +46,15 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	i;
 	size_t	j;
 
+	if (!s1 || !set)
+		return (NULL);
 	size = ft_compute_trimmed_size(s1, set);
 	strtrim = (char *)malloc(size * sizeof(char));
 	if (!strtrim)
 		return (NULL);
 	i = 0;
-	while (s1[i] != '\0')
-	{
-		if (!ft_strchr(set, s1[i]))
-			break ;
+	while (s1[i] != '\0' && ft_strchr(set, s1[i]))
 		i++;
-	}
 	j = 0;
 	while (s1[i] != '\0' && --size)
 	{

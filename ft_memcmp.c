@@ -20,6 +20,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	unsigned const char	*aux_s2;
 
 	i = 0;
+	cmp = 0;
 	aux_s1 = s1;
 	aux_s2 = s2;
 	while (i + 1 < n)
@@ -28,9 +29,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 			break ;
 		i++;
 	}
-	if (n == 0)
-		cmp = 0;
-	else
+	if (n != 0)
 		cmp = (unsigned char)aux_s1[i] - (unsigned char)aux_s2[i];
 	return (cmp);
 }

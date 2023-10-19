@@ -6,7 +6,7 @@
 #    By: javjimen <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 12:30:20 by javjimen          #+#    #+#              #
-#    Updated: 2023/10/19 12:42:00 by javjimen         ###   ########.fr        #
+#    Updated: 2023/10/19 15:16:32 by javjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ DEPS 		= $(OBJS:.o=.d)
 BONUS_DEPS	= $(BONUS_OBJS:.o=.d)
 
 # List of header files
-INCLUDE 	= libft.h
+#INCLUDE 	= libft.h
 
 # Compilation flags
 CC			= cc
@@ -83,7 +83,7 @@ AR			= ar
 DIR_DUP		= mkdir -p $(@D)
 
 CFLAGS 		+= -Wall -Wextra -Werror
-CPPFLAGS	+= -MMD -MP -I
+CPPFLAGS	+= -MMD -MP -I.
 ARFLAGS		= -r -c -s
 
 SANITIZE	= -fsanitize=address
@@ -99,7 +99,7 @@ $(NAME): 	$(OBJS)
 
 $(BUILD_DIR)/%.o: %.c
 			$(DIR_DUP)
-			$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDE) -c -o $@ $<
+			$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
 -include $(DEPS) $(BONUS_DEPS)
 

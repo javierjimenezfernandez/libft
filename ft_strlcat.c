@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:50:58 by javjimen          #+#    #+#             */
-/*   Updated: 2023/09/22 13:29:55 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/10/19 15:56:28 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	ret;
 
+	if ((!src || !dst) && dstsize == 0)
+		return (0);
 	ret = ft_strlen(src);
 	if (dstsize >= ft_strlen(dst))
 		ret += ft_strlen(dst);
