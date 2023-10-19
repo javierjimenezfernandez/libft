@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 14:04:15 by javjimen          #+#    #+#             */
-/*   Updated: 2023/10/13 15:13:15 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/10/19 15:31:52 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void ft_test_lstiter(void *content)
 
 	len = ft_itoa(ft_strlen(content));
 	ft_strlcpy(content, len, 3);
+	free(len);
 }
 
 static void *ft_test_lstmap(void *content)
@@ -37,21 +38,18 @@ int main(void)
 	t_list	**list;
 	t_list	**list_2;
 	t_list	*dummy_node;
+	t_list	*dummy_node_2;
 	t_list	*list_iterator;
 	t_list	*test_node_1;
 	t_list	*test_node_2;
 	t_list	*test_node_3;
-	//t_list	*test_node_4;
-	//t_list	*test_node_5;
 	t_list	*last_node;
 	char	test_cont_1[] = "node 1";
 	char	test_cont_2[] = "node 2";
 	char	test_cont_3[] = "node 3";
-	//char	test_cont_4[] = "node 4";
-	//char	test_cont_5[] = "node 5";
 
 	list = &dummy_node;
-	list_2 = &dummy_node;
+	list_2 = &dummy_node_2;
 
 	printf("\n");
 
@@ -247,7 +245,7 @@ int main(void)
 	printf(">\n");
 	ft_lstclear(list, free);
 	list_iterator = *list;
-	
+
 	/* ft_lstmap test */
 	/* ------------------------------------- */
 	printf("8 - FT_LSTMAP TEST\n");
@@ -274,12 +272,22 @@ int main(void)
 			list_iterator, i, list_iterator->content, list_iterator->next);
 	printf(">\n");
 	*list_2 = ft_lstmap(*list, ft_test_lstmap, free);
-	test_node_1 = ft_lstnew(ft_strdup(test_cont_1));
-	test_node_2 = ft_lstnew(ft_strdup(test_cont_2));
-	test_node_3 = ft_lstnew(ft_strdup(test_cont_3));
-	ft_lstadd_back(list, test_node_1);
-	ft_lstadd_back(list, test_node_2);
-	ft_lstadd_back(list, test_node_3);
+	i = 1;
+	list_iterator = *list_2;
+	printf("<list:\n");
+	while (list_iterator->next)
+	{
+		printf("%p: \t{node %d: \"%s\"}->(%p)\n", \
+				list_iterator, i, list_iterator->content, list_iterator->next);
+		list_iterator = list_iterator->next;
+		i++;
+	}
+	printf("%p: \t{node %d: \"%s\"}->(%p)\n", \
+			list_iterator, i, list_iterator->content, list_iterator->next);
+	printf(">\n");
+	printf("\n");
+	ft_lstclear(list_2, free);
+
 	i = 1;
 	list_iterator = *list;
 	printf("<list:\n");
@@ -293,9 +301,24 @@ int main(void)
 	printf("%p: \t{node %d: \"%s\"}->(%p)\n", \
 			list_iterator, i, list_iterator->content, list_iterator->next);
 	printf(">\n");
+	*list = ft_lstmap(*list, ft_test_lstmap, free);
+	i = 1;
+	list_iterator = *list;
+	printf("<list:\n");
+	while (list_iterator->next)
+	{
+		printf("%p: \t{node %d: \"%s\"}->(%p)\n", \
+				list_iterator, i, list_iterator->content, list_iterator->next);
+		list_iterator = list_iterator->next;
+		i++;
+	}
+	printf("%p: \t{node %d: \"%s\"}->(%p)\n", \
+			list_iterator, i, list_iterator->content, list_iterator->next);
+	printf(">\n");
+	printf("\n");
+	ft_lstclear(list, free);
 
-
-	//printf("<list:\n {node: "hello!"}->(null)>, [s => __strlen(s)], [x=> free(x)]\n");
-
+	printf("\nLEAKS:\n");
+	system("leaks a.out");
+	return (0);
 }
-

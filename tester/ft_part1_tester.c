@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:54:04 by javjimen          #+#    #+#             */
-/*   Updated: 2023/10/12 14:04:49 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:48:16 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	main(void)
 	char		str1[] = "Hola mundo \0 ajjaja";
 	char		str2[] = "Hola mundo \0 ajjaja";
 	char		str3[] = "12345678901234567890123456789012345678901";
+	char		str4[] = "Hola Mundo";
+	char		str5[] = " Cruel";
 	char		empty_str[] = "";
 	char		buff1[42];
 	char		buff2[42];
@@ -400,7 +402,8 @@ int	main(void)
 	ok = 1;
 	memset(buff1, 42, sizeof(buff1));
 	memset(buff2, 42, sizeof(buff2));
-	printf("Strings to test:\n\t buff1: %s\n\t buff2: %s\n\t empty_str: %s\n", buff1, buff2, empty_str);
+	printf("Strings to test:\n\t buff1: %s\n\t buff2: %s\n\t empty_str: %s\n", \
+			buff1, buff2, empty_str);
 	ret1 = strlcpy(buff1, empty_str, sizeof(buff1));
 	ret2 = ft_strlcpy(buff2, empty_str, sizeof(buff2));
 	while (buff1[i] != '\0')
@@ -427,5 +430,20 @@ int	main(void)
 		printf("\t\tReturn after ft_strlcpy(buff2, empty_str, sizeof(buff2)): %d\n", ret2);
 	}
 	printf("\n");
+
+	// ft_strlcat test
+	// -------------------------------------
+	i = 0;
+	ok = 1;
+	memset(buff1, 42, sizeof(buff1));
+	memset(buff2, 42, sizeof(buff2));
+	printf("11 - FT_STRLCAT TEST\n");
+	printf("-------------------------------------\n");
+	printf("Strings to test:\n\t buff1: %s\n\t buff2: %s\n\t str4: %s\n\t str5: %s\n", \
+			buff1, buff2, str4, str5);
 	
+
+	printf("\nLEAKS:\n");
+	system("leaks a.out");
+	return (0);	
 }
