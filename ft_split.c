@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 12:40:10 by javjimen          #+#    #+#             */
-/*   Updated: 2023/10/06 13:15:48 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/10/19 12:39:01 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ static int	ft_wordlen(char const *s, char c)
 
 static char	**ft_memfail_free(char **s_array, int count)
 {
-	int	i;
-
-	i = 0;
 	while (count >= 0)
 	{
 		free(s_array[count]);
@@ -90,7 +87,7 @@ char	**ft_split(char const *s, char c)
 			ft_strlcpy(s_array[i], s, ft_wordlen(s, c));
 			s += ft_wordlen(s, c);
 		}
-	i++;
+		i++;
 	}
 	s_array[i] = NULL;
 	return (s_array);
