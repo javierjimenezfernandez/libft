@@ -6,7 +6,7 @@
 #    By: javjimen <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 12:30:20 by javjimen          #+#    #+#              #
-#    Updated: 2023/10/19 18:14:51 by javjimen         ###   ########.fr        #
+#    Updated: 2023/10/19 18:56:56 by javjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,31 +62,17 @@ BONUS_SRCS	= ft_lstnew_bonus.c \
 			  ft_lstiter_bonus.c \
 			  ft_lstmap_bonus.c
 
-# Building directory
-BUILD_DIR	= build
-
 # List of object files
-OBJS 		= $(SRCS:%.c=$(BUILD_DIR)/%.o)
-BONUS_OBJS	= $(BONUS_SRCS:%.c=$(BUILD_DIR)/%.o)
-
-# List of dependent files
-DEPS 		= $(OBJS:.o=.d)
-BONUS_DEPS	= $(BONUS_OBJS:.o=.d)
-
-# List of header files
-#INCLUDE 	= libft.h
+OBJS 		= $(SRCS:%.c=%.o)
+BONUS_OBJS	= $(BONUS_SRCS:%.c=%.o)
 
 # Compilation flags
 CC			= cc
 RM			= rm -rf
 AR			= ar
-DIR_DUP		= mkdir -p $(@D)
 
 CFLAGS 		+= -Wall -Wextra -Werror
-#CPPFLAGS	+= -MMD -MP -I.
 ARFLAGS		= -r -c -s
-
-SANITIZE	= -fsanitize=address
 
 # Rule name protection
 .PHONY:		all clean fclean re bonus
@@ -97,17 +83,11 @@ all: 		$(NAME)
 $(NAME): 	$(OBJS)
 			$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
-$(BUILD_DIR)/%.o: %.c
-			$(DIR_DUP)
-			$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
-
--include $(DEPS) $(BONUS_DEPS)
-
-sanitize:	$(OBJS)
-			$(CC) $(OBJS) $(SANITIZE) -o $(NAME)
+%.o: %.c
+			$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-			$(RM) $(BUILD_DIR)
+			$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean: 	clean
 			$(RM) $(NAME)
@@ -116,6 +96,4 @@ re:			fclean all
 
 bonus:		$(NAME) $(BONUS_OBJS)
 			$(AR) $(ARFLAGS) $(NAME) $(BONUS_OBJS)
-
-#.SILENT:
 
