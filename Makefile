@@ -6,7 +6,7 @@
 #    By: javjimen <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 12:30:20 by javjimen          #+#    #+#              #
-#    Updated: 2023/10/07 18:59:00 by javjimen         ###   ########.fr        #
+#    Updated: 2023/10/19 12:42:00 by javjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,7 @@ ARFLAGS		= -r -c -s
 SANITIZE	= -fsanitize=address
 
 # Rule name protection
-.PHONY:		 all clean fclean re bonus
+.PHONY:		all clean fclean re bonus
 
 # Make rules
 all: 		$(NAME)
@@ -101,13 +101,13 @@ $(BUILD_DIR)/%.o: %.c
 			$(DIR_DUP)
 			$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDE) -c -o $@ $<
 
--include $(DEPS)
+-include $(DEPS) $(BONUS_DEPS)
 
 sanitize:	$(OBJS)
-			$(CC) $(OBJS) $(SANITIZE) -o $(NAME) 
+			$(CC) $(OBJS) $(SANITIZE) -o $(NAME)
 
 clean:
-			$(RM) $(OBJS) $(DEPS)
+			$(RM) $(OBJS) $(BONUS_OBJS) $(DEPS) $(BONUS_DEPS)
 
 fclean: 	clean
 			$(RM) $(NAME)
