@@ -6,7 +6,7 @@
 #    By: javjimen <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/11 12:30:20 by javjimen          #+#    #+#              #
-#    Updated: 2023/10/19 15:16:32 by javjimen         ###   ########.fr        #
+#    Updated: 2023/10/19 18:14:51 by javjimen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ AR			= ar
 DIR_DUP		= mkdir -p $(@D)
 
 CFLAGS 		+= -Wall -Wextra -Werror
-CPPFLAGS	+= -MMD -MP -I.
+#CPPFLAGS	+= -MMD -MP -I.
 ARFLAGS		= -r -c -s
 
 SANITIZE	= -fsanitize=address
@@ -107,7 +107,7 @@ sanitize:	$(OBJS)
 			$(CC) $(OBJS) $(SANITIZE) -o $(NAME)
 
 clean:
-			$(RM) $(OBJS) $(BONUS_OBJS) $(DEPS) $(BONUS_DEPS)
+			$(RM) $(BUILD_DIR)
 
 fclean: 	clean
 			$(RM) $(NAME)
