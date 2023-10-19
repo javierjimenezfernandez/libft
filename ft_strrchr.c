@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 10:57:07 by javjimen          #+#    #+#             */
-/*   Updated: 2023/09/28 11:01:18 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/10/05 13:17:17 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ char	*ft_strrchr(const char *s, int c)
 	ret = NULL;
 	while (s[i] != '\0')
 	{
-		if (s[i] == (unsigned char)c)
+		if (s[i] == (char)c)
 			ret = ((char *)&s[i]);
 		i++;
 	}
-	if (s[i] == (unsigned char)c)
+	if (s[i] == (char)c)
 		ret = ((char *)&s[i]);
 	return (ret);
 }

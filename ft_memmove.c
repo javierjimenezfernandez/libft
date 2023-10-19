@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:51:53 by javjimen          #+#    #+#             */
-/*   Updated: 2023/09/21 15:19:13 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/10/19 12:38:19 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 				aux_dst[i] = aux_src[i];
 				i++;
 			}
-		}	
+		}
 	}
 	return (dst);
 }

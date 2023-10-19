@@ -6,11 +6,10 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 15:43:58 by javjimen          #+#    #+#             */
-/*   Updated: 2023/09/28 16:33:57 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/10/05 13:07:28 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
 char	*ft_strdup(const char *s1)
