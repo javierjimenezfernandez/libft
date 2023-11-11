@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 12:05:18 by javjimen          #+#    #+#             */
-/*   Updated: 2023/09/28 15:35:47 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/10/19 15:57:44 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	size_t	ndl_len;
 	char	*found;
 
+	if ((!haystack || !needle) && len == 0)
+		return (NULL);
 	i = 0;
 	ndl_len = ft_strlen(needle);
 	if (ndl_len == 0)

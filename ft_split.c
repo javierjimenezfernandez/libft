@@ -64,18 +64,12 @@ static char	**ft_memfail_free(char **s_array, int count)
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+static char	**ft_splitloop(char const *s, char c, int w_count, char **s_array)
 {
-	char	**s_array;
-	int		word_count;
-	int		i;
+	int	i;
 
 	i = 0;
-	word_count = ft_count_words(s, c) + 1;
-	s_array = (char **)malloc(word_count * sizeof (char *));
-	if (!s_array)
-		return (NULL);
-	while (i + 1 < word_count)
+	while (i + 1 < w_count)
 	{
 		s_array[i] = (char *)malloc(ft_wordlen(s, c) * sizeof (char));
 		if (!s_array[i])
@@ -91,4 +85,18 @@ char	**ft_split(char const *s, char c)
 	}
 	s_array[i] = NULL;
 	return (s_array);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**s_array;
+	int		word_count;
+
+	if (!s)
+		return (NULL);
+	word_count = ft_count_words(s, c) + 1;
+	s_array = (char **)malloc(word_count * sizeof (char *));
+	if (!s_array)
+		return (NULL);
+	return (ft_splitloop(s, c, word_count, s_array));
 }
