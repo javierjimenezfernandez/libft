@@ -6,7 +6,7 @@
 /*   By: javjimen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:54:04 by javjimen          #+#    #+#             */
-/*   Updated: 2023/10/12 14:04:49 by javjimen         ###   ########.fr       */
+/*   Updated: 2023/10/20 13:08:40 by javjimen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,25 @@ int	main(void)
 {
 	int			ok;
 	int			i;
+	int			n;
 	int			ret1;
 	int			ret2;
 	const char	s[] = "Hola mundo \0 ajjaja";
 	char		str1[] = "Hola mundo \0 ajjaja";
 	char		str2[] = "Hola mundo \0 ajjaja";
 	char		str3[] = "12345678901234567890123456789012345678901";
+	char		str4[] = "Hola Mundo";
+	char		str5[] = " Cruel";
 	char		empty_str[] = "";
+	char		int_min[] = "-2147483648";
+	char		zero[] = "-0";
+	char		int_max[] = "2147483647";
+	char		rand_int[] = "-2355";
+	char		int_overf[] = "2147483650";
 	char		buff1[42];
 	char		buff2[42];
+	char		*test_p1;
+	char		*test_p2;
 
 	// ft_isalpha test
 	// -------------------------------------
@@ -400,7 +410,8 @@ int	main(void)
 	ok = 1;
 	memset(buff1, 42, sizeof(buff1));
 	memset(buff2, 42, sizeof(buff2));
-	printf("Strings to test:\n\t buff1: %s\n\t buff2: %s\n\t empty_str: %s\n", buff1, buff2, empty_str);
+	printf("Strings to test:\n\t buff1: %s\n\t buff2: %s\n\t empty_str: %s\n", \
+			buff1, buff2, empty_str);
 	ret1 = strlcpy(buff1, empty_str, sizeof(buff1));
 	ret2 = ft_strlcpy(buff2, empty_str, sizeof(buff2));
 	while (buff1[i] != '\0')
@@ -427,5 +438,171 @@ int	main(void)
 		printf("\t\tReturn after ft_strlcpy(buff2, empty_str, sizeof(buff2)): %d\n", ret2);
 	}
 	printf("\n");
-	
+
+	// ft_strlcat test
+	// -------------------------------------
+	i = 0;
+	ok = 1;
+	memset(buff1, 42, sizeof(buff1));
+	memset(buff2, 42, sizeof(buff2));
+	strlcpy(buff1, str4, sizeof(buff1));
+	strlcpy(buff2, str4, sizeof(buff2));
+	printf("11 - FT_STRLCAT TEST\n");
+	printf("-------------------------------------\n");
+	printf("Strings to test:\n\t buff1: %s\n\t buff2: %s\n\t str5: %s\n", \
+			buff1, buff2, str5);
+	ret1 = strlcat(buff1, str5, sizeof(buff1));
+	ret2 = ft_strlcat(buff2, str5, sizeof(buff2));
+	while (buff1[i] != '\0')
+	{
+		if (buff1[i] != buff2[i] || ret1 != ret2)
+		{
+			ok = 0;
+			break ;
+		}
+		i++;
+	}
+	if (ok == 1)
+	{
+		printf("OK: buff1[i] == buff2[i] from i = 0 to %d\n", i);
+		printf("Buffer after ft_strlcat(buff2, str5, sizeof(buff2)): %s\n", buff2);
+		printf("Return after ft_strlcat(buff2, str5, sizeof(buff2)): %d\n", ret2);
+	}
+	else
+	{
+		printf("KO: buff1[i] != buff2[i] at i = %d\n", i);
+		printf("\tHint:\tbuffer after    strlcat(buff1, str4, sizeof(buff1)): %s\n", buff1);
+		printf("\t\tReturn after strlcat(buff1, str4, sizeof(buff1)): %d\n", ret1);
+		printf("\t\tbuffer after ft_strlcat(buff2, str5, sizeof(buff2)): %s\n", buff2);
+		printf("\t\tReturn after ft_strlcat(buff2, str5, sizeof(buff2)): %d\n", ret2);
+	}
+	printf("\n");
+	i = 0;
+	ok = 1;
+	memset(buff1, 42, sizeof(buff1));
+	memset(buff2, 42, sizeof(buff2));
+	strlcpy(buff1, empty_str, sizeof(buff1));
+	ft_strlcpy(buff2, empty_str, sizeof(buff2));
+	printf("Strings to test:\n\t buff1: %s\n\t buff2: %s\n\t empty_str: %s\n", \
+			buff1, buff2, empty_str);
+	ret1 = strlcat(buff1, empty_str, sizeof(buff1));
+	ret2 = ft_strlcat(buff2, empty_str, sizeof(buff2));
+	while (buff1[i] != '\0')
+	{
+		if (buff1[i] != buff2[i] || ret1 != ret2)
+		{
+			ok = 0;
+			break ;
+		}
+		i++;
+	}
+	if (ok == 1)
+	{
+		printf("OK: buff1[i] == buff2[i] from i = 0 to %d\n", i);
+		printf("Buffer after ft_strlcpy(buff2, empty_str, sizeof(buff2)): %s\n", buff2);
+		printf("Return after ft_strlcpy(buff2, empty_str, sizeof(buff2)): %d\n", ret2);
+	}
+	else
+	{
+		printf("KO: buff1[i] != buff2[i] at i = %d\n", i);
+		printf("\tHint:\tbuff after    strlcpy(buff1, empty_str, sizeof(buff1)): %s\n", buff1);
+		printf("\t\tReturn after strlcpy(buff1, empty_str, sizeof(buff1)): %d\n", ret1);
+		printf("\t\tbuff after ft_strlcpy(buff2, empty_str, sizeof(buff2)): %s\n", buff2);
+		printf("\t\tReturn after ft_strlcpy(buff2, empty_str, sizeof(buff2)): %d\n", ret2);
+	}
+	printf("\n");
+
+	// ft_atoi test
+	// -------------------------------------
+	i = 0;
+	ok = 1;
+	printf("20 - FT_ATOI TEST\n");
+	printf("-------------------------------------\n");
+	printf("test: \"%s\"\n", int_min);
+	ret1 = atoi(int_min);
+	ret2 = ft_atoi(int_min);
+	if (ret1 == ret2)
+		printf("OK\n");
+	else
+		printf("KO:\n\tatoi = %d\n\tft_atoi = %d\n", ret1, ret2);
+
+	printf("test: \"%s\"\n", zero);
+	ret1 = atoi(zero);
+	ret2 = ft_atoi(zero);
+	if (ret1 == ret2)
+		printf("OK\n");
+	else
+		printf("KO:\n\tatoi = %d\n\tft_atoi = %d\n", ret1, ret2);
+
+	printf("test: \"%s\"\n", int_max);
+	ret1 = atoi(int_max);
+	ret2 = ft_atoi(int_max);
+	if (ret1 == ret2)
+		printf("OK\n");
+	else
+		printf("KO:\n\tatoi = %d\n\tft_atoi = %d\n", ret1, ret2);
+
+	printf("test: \"%s\"\n", rand_int);
+	ret1 = atoi(rand_int);
+	ret2 = ft_atoi(rand_int);
+	if (ret1 == ret2)
+		printf("OK\n");
+	else
+		printf("KO:\n\tatoi = %d\n\tft_atoi = %d\n", ret1, ret2);
+
+	printf("test: \"%s\"\n", int_overf);
+	ret1 = atoi(int_overf);
+	ret2 = ft_atoi(int_overf);
+	if (ret1 == ret2)
+		printf("OK\n");
+	else
+		printf("KO:\n\tatoi = %d\n\tft_atoi = %d\n", ret1, ret2);
+
+	printf("\n");
+
+	// ft_calloc test
+	// -------------------------------------
+	i = 0;
+	ok = 1;
+	printf("21 - FT_CALLOC TEST\n");
+	printf("-------------------------------------\n");
+	n = 5;
+	test_p1 = calloc(n, sizeof(char));
+	test_p2 = ft_calloc(n, sizeof(char));
+	while (i < n)
+	{
+		if (test_p1[i] != test_p2[i])
+			ok = 0;
+		i++;
+	}
+	if (ok)
+		printf("OK:\n");
+	else
+		printf("KO:\n");
+	i = 0;
+	printf("ft_calloc allocated %d chars:\t", n);
+	while (i < n)
+	{
+		printf(" %d", test_p2[i]);
+		i++;
+	}
+	printf("\n");
+	if (!ok)
+	{
+		printf("calloc allcoated %d chars:\t", n);
+		while (i < n)
+		{
+			printf(" %d", test_p1[i]);
+			i++;
+		}
+	}
+	printf("\n");
+	free(test_p1);
+	free(test_p2);
+	printf("\n");
+
+
+	printf("\nLEAKS:\n");
+	system("leaks a.out");
+	return (0);	
 }
