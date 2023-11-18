@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <stdlib.h>
-#include "libft.h"
+#include "../libft.h"
 
 static void ft_test_lstiter(void *content)
 {
